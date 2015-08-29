@@ -1,0 +1,13 @@
+<resources>
+    <color name="actionBarColor">#19273B</color>
+    <color name="textErrorColor">#CCCCCC</color>
+    <color name="communColor">#fafafa</color>
+    <color name="editTextColorSelected">#0197D6</color>
+    <color name="footerColor">#AE2834</color>
+    <color name="fieldsDetail">#C9C9C9</color>
+    <color name="baseDetail">#EFEFF4</color>
+    <color name="titleBaseDetail">#707076</color>
+    <color name="kescTitleColor">#4099D1</color>
+    <color name="kescColor">#7AA672</color>
+    <color name="kescTextColor">#428BCA</color>
+</resources>
