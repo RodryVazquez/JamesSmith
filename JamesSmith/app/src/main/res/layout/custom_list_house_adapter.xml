@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Layout custom para el titulo y subtitulo del centro de consumo-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_marginTop="8dp"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="45dp"
+        android:layout_height="40dp"
+        android:scaleType="centerInside"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="3dp"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/house_icon"/>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="55dp"
+        android:orientation="vertical">
+
+        <TextView android:id="@+id/lblTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="John Smith"
+            android:textColor="@color/kescTextColor"
+            android:textSize="22dp" />
+
+        <TextView android:id="@+id/lblSubtitle"
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="California No. 31200"
+            android:textColor="@color/titleBaseDetail"
+            android:textSize="16dp" />
+
+        <ImageView
+            android:id="@+id/test"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="-38dp"
+            android:layout_gravity="right"
+            android:src="@drawable/ic_action_search"/>
+    </LinearLayout>
+
+</LinearLayout>
