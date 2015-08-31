@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">House Portal</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="btnContinue">Continue</string>
+    <string name="detail_house_title">House Detail</string>
+    <string name="title_activity_create">CreateActivity</string>
+</resources>
