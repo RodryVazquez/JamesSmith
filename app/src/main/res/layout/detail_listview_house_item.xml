@@ -7,15 +7,15 @@ android:id="@+id/detailEvaluationLayoutHistoric">
         android:id="@+id/headerSection"
         android:layout_width="match_parent"
         android:layout_alignParentTop="true"
-        android:layout_height="45dp"
+        android:layout_height="90dp"
         android:background="@color/kescTitleColor">
         <TextView
             android:id="@+id/TitleHistoric"
             android:textSize="22dp"
             android:textColor="#fafafa"
-            android:layout_marginTop="10dp"
+            android:text="General Information"
             android:layout_marginLeft="8dp"
-            android:text="Información General"
+            android:layout_centerVertical="true"
             android:fontFamily="sans-serif"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -25,7 +25,7 @@ android:id="@+id/detailEvaluationLayoutHistoric">
         android:id="@+id/footerSection"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="20dp"
         android:gravity="center"
         android:background="@color/kescColor" />
 
@@ -55,15 +55,29 @@ android:id="@+id/detailEvaluationLayoutHistoric">
         <TextView
             android:id="@+id/txtHouseDescription"
             android:layout_below="@+id/txtNameDetailHistoric"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="8dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="40dp"
             android:textSize="15dp"
             android:text="Centro de consumo "
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_below="@+id/txtNameDetailHistoric"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="centerInside"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="7dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/ic_action_labels"/>
+
         <View
-            android:layout_below="@id/txtHouseDescription"
+            android:layout_below="@id/icon"
+            android:id="@+id/viewDescription"
             android:layout_width="fill_parent"
             android:layout_height="1dp"
             android:layout_marginTop="3dp"
@@ -72,7 +86,7 @@ android:id="@+id/detailEvaluationLayoutHistoric">
         <!--Telefono-->
         <TextView
             android:id="@+id/txtPhoneDetailHistoric"
-            android:layout_below="@+id/txtHouseDescription"
+            android:layout_below="@+id/viewDescription"
             android:layout_marginTop="7dp"
             android:layout_marginLeft="8dp"
             android:textColor="@color/kescTextColor"
@@ -84,15 +98,30 @@ android:id="@+id/detailEvaluationLayoutHistoric">
         <TextView
             android:id="@+id/txtHouseAddress"
             android:layout_below="@+id/txtPhoneDetailHistoric"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="8dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="40dp"
             android:textSize="15dp"
             android:text="Centro de consumo "
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:id="@+id/icon2"
+            android:layout_below="@+id/txtPhoneDetailHistoric"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="centerInside"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="7dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/ic_action_directions"/>
+
+
         <View
             android:id="@+id/linePhoneHistoric"
-            android:layout_below="@id/txtHouseAddress"
+            android:layout_below="@id/icon2"
             android:layout_width="fill_parent"
             android:layout_height="1dp"
             android:layout_marginTop="3dp"
@@ -113,14 +142,28 @@ android:id="@+id/detailEvaluationLayoutHistoric">
         <TextView
             android:id="@+id/txtHousePrice"
             android:layout_below="@+id/txtDirectionDetailHistoric"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="8dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="40dp"
             android:textSize="15dp"
             android:text="Centro de consumo "
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:id="@+id/icon3"
+            android:layout_below="@+id/txtDirectionDetailHistoric"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="centerInside"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="7dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/ic_action_important"/>
+
         <View
-            android:layout_below="@id/txtHousePrice"
+            android:layout_below="@id/icon3"
             android:id="@+id/lineDirectionHistoric"
             android:layout_width="fill_parent"
             android:layout_height="1dp"
@@ -142,14 +185,27 @@ android:id="@+id/detailEvaluationLayoutHistoric">
         <TextView
             android:id="@+id/txtHouseStatus"
             android:layout_below="@+id/txtZoneDetailHistoric"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="8dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="40dp"
             android:textSize="15dp"
             android:text="Centro de consumo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:id="@+id/icon4"
+            android:layout_below="@+id/txtZoneDetailHistoric"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="centerInside"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="7dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/ic_action_search"/>
         <View
-            android:layout_below="@id/txtHouseStatus"
+            android:layout_below="@id/icon4"
             android:id="@+id/lineZoneHistoric"
             android:layout_width="fill_parent"
             android:layout_height="1dp"
@@ -171,14 +227,27 @@ android:id="@+id/detailEvaluationLayoutHistoric">
         <TextView
             android:id="@+id/txtHouseIdentity"
             android:layout_below="@+id/txtSubZoneDetailHistoric"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="8dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="40dp"
             android:textSize="15dp"
             android:text="Centro de consumo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:id="@+id/icon5"
+            android:layout_below="@+id/txtSubZoneDetailHistoric"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="centerInside"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="7dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/ic_action_accounts"/>
         <View
-            android:layout_below="@id/txtHouseIdentity"
+            android:layout_below="@id/icon5"
             android:id="@+id/lineSubZoneHistoric"
             android:layout_width="fill_parent"
             android:layout_height="1dp"

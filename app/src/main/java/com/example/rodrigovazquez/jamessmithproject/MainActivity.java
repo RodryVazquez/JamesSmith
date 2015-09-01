@@ -24,6 +24,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.example.rodrigovazquez.jamessmithproject.Activitys.CreateActivity;
 import com.example.rodrigovazquez.jamessmithproject.Adapter.ListHouseAdapter;
 import com.example.rodrigovazquez.jamessmithproject.Activitys.DetailHouseActivity;
 import com.example.rodrigovazquez.jamessmithproject.Models.HomeModel;
@@ -124,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.actionNewItem) {
 
-            Intent intent = new Intent(MainActivity.this,DetailHouseActivity.class);
+            Intent intent = new Intent(MainActivity.this,CreateActivity.class);
             startActivity(intent);
             return true;
         }
