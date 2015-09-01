@@ -9,10 +9,10 @@
     </style>
 
     <style name="ActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
-        <item name="android:background">@color/kescColor</item>
+        <item name="android:background">@color/primary</item>
 
         <!-- Support library compatibility -->
-        <item name="background">@color/kescColor</item>
+        <item name="background">@color/primary</item>
 
     </style>
 </resources>

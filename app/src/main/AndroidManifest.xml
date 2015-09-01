@@ -54,6 +54,7 @@
         </activity>
         <activity
             android:name=".Activitys.CreateActivity"
+            android:noHistory="true"
             android:label="@string/title_activity_create"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/AppTheme">

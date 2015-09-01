@@ -16,7 +16,7 @@ public class ApiService {
     private static final String baseUrl = "http://homeapiportal.azurewebsites.net//";
 
     /**
-     *
+     * GET.
      * @param url
      * @param params
      * @param responseHandler
@@ -27,7 +27,7 @@ public class ApiService {
     }
 
     /**
-     *
+     * POST.
      * @param url
      * @param params
      * @param responseHandler
@@ -38,7 +38,30 @@ public class ApiService {
     }
 
     /**
-     *
+     * PUT.
+     * @param url
+     * @param params
+     * @param responseHandler
+     */
+    public static void put(String url, RequestParams params, AsyncHttpResponseHandler responseHandler) {
+
+        client.put(getAbsoluteUrl(url), params, responseHandler);
+    }
+
+    /**
+     * DELETE.
+     * @param url
+     * @param params
+     * @param responseHandler
+     */
+    public static void delete(String url, RequestParams params, AsyncHttpResponseHandler responseHandler) {
+
+        client.delete(getAbsoluteUrl(url), params, responseHandler);
+    }
+
+
+    /**
+     * Url base de todas las peticiones.
      * @param relativeUrl
      * @return
      */

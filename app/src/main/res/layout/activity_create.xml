@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_alignParentTop="true"
         android:layout_height="90dp"
-        android:background="@color/kescTitleColor">
+        android:background="@color/primarySubtitle">
 
     </RelativeLayout>
     <!--Footer-->
@@ -20,11 +20,12 @@
         android:layout_width="match_parent"
         android:layout_height="20dp"
         android:gravity="center"
-        android:background="@color/kescColor" />
+        android:background="@color/primaryFooter" />
 
     <ScrollView
         android:id="@+id/detailScrollGeneralLayoutHistoric"
         android:layout_width="match_parent"
+        android:background="@color/primaryBody"
         android:layout_above="@id/footerSection"
         android:layout_below="@id/headerSection"
         android:layout_height="match_parent">
@@ -41,7 +42,7 @@
                 android:layout_marginLeft="8dp"
                 android:textSize="20dp"
                 android:text="House Description"
-                android:textColor="@color/kescTextColor"
+                android:textColor="@color/primaryContent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -53,6 +54,7 @@
                 android:layout_marginRight="15dp"
                 android:textSize="15dp"
                 android:singleLine="true"
+                android:backgroundTint="@color/primary"
                 android:hint="Description of house"
                 android:layout_width="match_parent"
                 android:layout_height="39dp"/>
@@ -77,7 +79,7 @@
                 android:layout_below="@+id/iconCreate"
                 android:layout_marginTop="7dp"
                 android:layout_marginLeft="8dp"
-                android:textColor="@color/kescTextColor"
+                android:textColor="@color/primaryContent"
                 android:textSize="20dp"
                 android:text="Address"
                 android:layout_width="wrap_content"
@@ -90,6 +92,7 @@
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="15dp"
                 android:textSize="15dp"
+                android:backgroundTint="@color/primary"
                 android:hint="Address of house"
                 android:singleLine="true"
                 android:layout_width="match_parent"
@@ -114,7 +117,7 @@
                 android:layout_below="@+id/iconCreate2"
                 android:layout_marginTop="7dp"
                 android:layout_marginLeft="8dp"
-                android:textColor="@color/kescTextColor"
+                android:textColor="@color/primaryContent"
                 android:textSize="20dp"
                 android:text="Price"
                 android:layout_width="wrap_content"
@@ -127,6 +130,7 @@
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="15dp"
                 android:textSize="15dp"
+                android:backgroundTint="@color/primary"
                 android:hint="Price of house"
                 android:layout_width="match_parent"
                 android:layout_height="39dp"/>
@@ -150,7 +154,7 @@
                 android:layout_below="@+id/iconCreate3"
                 android:layout_marginTop="7dp"
                 android:layout_marginLeft="8dp"
-                android:textColor="@color/kescTextColor"
+                android:textColor="@color/primaryContent"
                 android:textSize="20dp"
                 android:text="Status"
                 android:layout_width="wrap_content"

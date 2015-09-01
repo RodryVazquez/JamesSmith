@@ -8,15 +8,21 @@
 package com.example.rodrigovazquez.jamessmithproject.WebService;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.rodrigovazquez.jamessmithproject.Adapter.ListHouseAdapter;
 import com.example.rodrigovazquez.jamessmithproject.Enums.StatusEnum;
+import com.example.rodrigovazquez.jamessmithproject.MainActivity;
 import com.example.rodrigovazquez.jamessmithproject.Models.HomeModel;
 import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
 import org.apache.http.Header;
 import org.json.JSONArray;
@@ -25,6 +31,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.jar.Manifest;
 
 //Servicio general para HomeController
 public class HomeService {
@@ -46,9 +53,8 @@ public class HomeService {
      * Consulta todas las casas disponibles
      * @return colecion de casas disponibles
      */
-    public void GetAllHouses(final ListView listView) {
+    public void getAllHouses(final ListView listView,final List<HomeModel> homeModelList) {
 
-        final List<HomeModel> homeModelList = new ArrayList<>();
         ApiService.get(relativeUrl, null, new JsonHttpResponseHandler() {
 
             ProgressDialog dialog;
@@ -187,5 +193,84 @@ public class HomeService {
                 }
             }
         });
+    }
+
+
+    /**
+     *
+     * @param model
+     */
+    public void createNewHouse(final HomeModel model) {
+        if(model != null){
+
+            RequestParams requestParams = new RequestParams();
+            requestParams.put("HomeDescription", model.getDescription());
+            requestParams.put("Address",model.getAddress());
+            requestParams.put("Price",model.getPrice());
+            requestParams.put("Active",model.getActive());
+
+            ApiService.post(relativeUrl, requestParams, new JsonHttpResponseHandler() {
+
+                ProgressDialog dialog;
+
+                @Override
+                public void onStart() {
+                    super.onStart();
+                    dialog = new ProgressDialog(context);
+                    dialog.setMessage("Creating house...");
+                    dialog.setCancelable(false);
+                    dialog.show();
+                }
+
+                /**
+                 *
+                 * @param statusCode
+                 * @param headers
+                 * @param response
+                 */
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                    super.onSuccess(statusCode, headers, response);
+                    if (statusCode == 200 || statusCode == 204) {
+
+                        //Borramos todos los registros
+                        HomeModel.deleteAll(HomeModel.class);
+                        new AlertDialog.Builder(context)
+                                .setMessage("Home successfully added.")
+                                .setTitle("House Portal")
+                                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                        //Regresamos al listado principal
+                                        Intent intent = new Intent(context, MainActivity.class);
+                                        context.startActivity(intent);
+                                        dialog.cancel();
+                                    }
+                                })
+                                .show();
+
+                    }
+                }
+
+                @Override
+                public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                    super.onFailure(statusCode, headers, throwable, errorResponse);
+                }
+
+                @Override
+                public void onFinish() {
+                    super.onFinish();
+                    if (dialog != null && dialog.isShowing()) {
+
+                        dialog.dismiss();
+                        dialog = null;
+                    }
+                }
+
+            });
+
+        }
+
     }
 }

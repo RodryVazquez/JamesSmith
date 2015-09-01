@@ -10,12 +10,9 @@
 package com.example.rodrigovazquez.jamessmithproject;
 
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -30,6 +27,7 @@ import com.example.rodrigovazquez.jamessmithproject.Activitys.DetailHouseActivit
 import com.example.rodrigovazquez.jamessmithproject.Models.HomeModel;
 import com.example.rodrigovazquez.jamessmithproject.WebService.HomeService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 //Actividad principal
@@ -71,8 +69,8 @@ public class MainActivity extends AppCompatActivity {
             houseAdapter = new ListHouseAdapter(MainActivity.this, houses);
             houseList.setAdapter(houseAdapter);
         } else {
-
-            homeService.GetAllHouses(houseList);
+            houses = new ArrayList<>();
+            homeService.getAllHouses(houseList,houses);
         }
 
         /**
@@ -96,9 +94,9 @@ public class MainActivity extends AppCompatActivity {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-
+                houses = new ArrayList<HomeModel>();
                 HomeModel.deleteAll(HomeModel.class);
-                homeService.GetAllHouses(houseList);
+                homeService.getAllHouses(houseList,houses);
                 swipeRefreshLayout.setRefreshing(false);
 
             }

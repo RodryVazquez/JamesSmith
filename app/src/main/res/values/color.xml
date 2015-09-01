@@ -10,4 +10,9 @@
     <color name="kescTitleColor">#4099D1</color>
     <color name="kescColor">#7AA672</color>
     <color name="kescTextColor">#428BCA</color>
+    <color name="primary">#673AB7</color>
+    <color name="primaryBody">#EDE7F6</color>
+    <color name="primaryFooter">#311B92</color>
+    <color name="primarySubtitle">#D1C4E9</color>
+    <color name="primaryContent">#4527A0</color>
 </resources>
