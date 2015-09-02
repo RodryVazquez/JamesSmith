@@ -16,6 +16,7 @@ import android.graphics.drawable.Drawable;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,8 +25,10 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.rodrigovazquez.jamessmithproject.Adapter.CustomizedSpinnerAdapter;
+import com.example.rodrigovazquez.jamessmithproject.Helpers.Connection;
 import com.example.rodrigovazquez.jamessmithproject.Helpers.FontHelper;
 import com.example.rodrigovazquez.jamessmithproject.Models.HomeModel;
 import com.example.rodrigovazquez.jamessmithproject.R;
@@ -44,6 +47,7 @@ public class CreateActivity extends AppCompatActivity implements AdapterView.OnI
     Spinner houseStatus;
     private HomeService homeService;
     private HomeModel homeModel;
+    private Connection connection;
     TextView titleDescription;
     TextView titleAddress;
     TextView titlePrice;
@@ -55,6 +59,7 @@ public class CreateActivity extends AppCompatActivity implements AdapterView.OnI
      */
     public CreateActivity() {
         homeService = new HomeService(CreateActivity.this);
+        connection = new Connection(CreateActivity.this);
     }
 
 
@@ -150,8 +155,15 @@ public class CreateActivity extends AppCompatActivity implements AdapterView.OnI
                     model.setAddress(address);
                     model.setPrice(Double.parseDouble(price));
                     model.setActive(status);
-                    homeService.createNewHouse(model);
 
+                    if(connection.isConnected()) {
+                        homeService.createNewHouse(model);
+                    }
+                    else{
+                        Toast toast = Toast.makeText(CreateActivity.this, "Not internet connection", Toast.LENGTH_SHORT);
+                        toast.setGravity(Gravity.CENTER_VERTICAL,0,0);
+                        toast.show();
+                    }
                 }
                 return true;
             default:

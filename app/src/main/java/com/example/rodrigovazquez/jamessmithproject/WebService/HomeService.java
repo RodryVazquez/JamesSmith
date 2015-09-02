@@ -50,8 +50,10 @@ public class HomeService {
     }
 
     /**
-     * Consulta todas las casas disponibles
-     * @return colecion de casas disponibles
+     * Consulta todas las casas disponibles.
+     * @param listView listview de la vista principal.
+     * @param homeModelList lista generica de tipo homeModel.
+     * @return colecion de casas disponibles.
      */
     public void getAllHouses(final ListView listView,final List<HomeModel> homeModelList) {
 
@@ -113,8 +115,8 @@ public class HomeService {
 
     /**
      * Consulta un casa en especifico.
-     * @param objects
-     * @param homeId
+     * @param objects objetos genericos.
+     * @param homeId id de la casa seleccionada.
      */
     public void getHomeById(final Object[] objects, final int homeId) {
 
@@ -198,7 +200,7 @@ public class HomeService {
 
     /**
      *
-     * @param model
+     * @param model objeto tipo HomeModel.
      */
     public void createNewHouse(final HomeModel model) {
         if(model != null){

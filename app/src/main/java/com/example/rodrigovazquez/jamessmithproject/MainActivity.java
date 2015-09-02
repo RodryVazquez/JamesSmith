@@ -1,5 +1,6 @@
 /**
  * Actividad principal.
+ *
  * @author Rodrigo Vazquez.
  * @version 1.0.
  * @see com.example.rodrigovazquez.jamessmithproject.WebService.HomeService
@@ -14,16 +15,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.rodrigovazquez.jamessmithproject.Activitys.CreateActivity;
 import com.example.rodrigovazquez.jamessmithproject.Adapter.ListHouseAdapter;
 import com.example.rodrigovazquez.jamessmithproject.Activitys.DetailHouseActivity;
+import com.example.rodrigovazquez.jamessmithproject.Helpers.Connection;
 import com.example.rodrigovazquez.jamessmithproject.Models.HomeModel;
 import com.example.rodrigovazquez.jamessmithproject.WebService.HomeService;
 
@@ -39,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     ListHouseAdapter houseAdapter;
     SwipeRefreshLayout swipeRefreshLayout;
     List<HomeModel> houses;
+    Connection connection;
 
     /**
      * Inicializa el servicio
@@ -46,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
     public MainActivity() {
 
         homeService = new HomeService(MainActivity.this);
+        connection = new Connection(MainActivity.this);
     }
 
     @Override
@@ -69,8 +75,10 @@ public class MainActivity extends AppCompatActivity {
             houseAdapter = new ListHouseAdapter(MainActivity.this, houses);
             houseList.setAdapter(houseAdapter);
         } else {
-            houses = new ArrayList<>();
-            homeService.getAllHouses(houseList,houses);
+            if (connection.isConnected()) {
+                houses = new ArrayList<>();
+                homeService.getAllHouses(houseList, houses);
+            }
         }
 
         /**
@@ -80,9 +88,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 HomeModel model = houses.get(position);
-                Intent intent = new Intent(MainActivity.this,DetailHouseActivity.class);
+                Intent intent = new Intent(MainActivity.this, DetailHouseActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("keyHome",model);
+                bundle.putSerializable("keyHome", model);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
@@ -94,25 +102,38 @@ public class MainActivity extends AppCompatActivity {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                houses = new ArrayList<HomeModel>();
-                HomeModel.deleteAll(HomeModel.class);
-                homeService.getAllHouses(houseList,houses);
-                swipeRefreshLayout.setRefreshing(false);
-
+                if (connection.isConnected()) {
+                    houses = new ArrayList<HomeModel>();
+                    HomeModel.deleteAll(HomeModel.class);
+                    homeService.getAllHouses(houseList, houses);
+                    swipeRefreshLayout.setRefreshing(false);
+                }
+                {
+                    Toast toast = Toast.makeText(MainActivity.this, "Not internet connection", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER_VERTICAL,0,0);
+                    toast.show();
+                    swipeRefreshLayout.setRefreshing(false);
+                }
             }
         });
     }
 
-    //
+    /**
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        MenuInflater inflater =  getMenuInflater();
+        MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_main, menu);
-       return true;
+        return true;
     }
 
-    //
+    /**
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -123,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.actionNewItem) {
 
-            Intent intent = new Intent(MainActivity.this,CreateActivity.class);
+            Intent intent = new Intent(MainActivity.this, CreateActivity.class);
             startActivity(intent);
             return true;
         }
