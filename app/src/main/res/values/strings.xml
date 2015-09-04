@@ -6,6 +6,7 @@
     <string name="btnContinue">Continue</string>
     <string name="detail_house_title">House Detail</string>
     <string name="title_activity_create">Create New House</string>
+    <string name="take_picture">Register Picture</string>
 
     <!--Contenido del spinner-->
     <string-array name="spinnerContent">
@@ -13,4 +14,10 @@
         <item>Vendida</item>
     </string-array>
 
+    <!--Camera factory-->
+    <string name="btnIntend">Take picture</string>
+    <string name="btnIntendS">Take (small) Picture</string>
+    <string name="btnIntendV">Take Video</string>
+    <string name="cannot">Cannot</string>
+    <string name="album_name">HousePortal</string>
 </resources>

@@ -9,7 +9,7 @@
         android:id="@+id/headerSection"
         android:layout_width="match_parent"
         android:layout_alignParentTop="true"
-        android:layout_height="90dp"
+        android:layout_height="20dp"
         android:background="@color/primarySubtitle">
 
     </RelativeLayout>
@@ -144,7 +144,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:scaleType="centerInside"
-                android:ellipsize="end"
                 android:gravity="center_vertical"
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="3dp"

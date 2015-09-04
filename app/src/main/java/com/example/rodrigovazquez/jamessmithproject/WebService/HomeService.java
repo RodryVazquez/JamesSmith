@@ -1,8 +1,10 @@
 /**
- * Servicio HTTP para las casas.
+ * Servicio HTTP para las casas y fotografias.
  * @author Rodrigo Vazquez.
  * @version 1.0.
  * @see com.example.rodrigovazquez.jamessmithproject.MainActivity
+ * @see com.example.rodrigovazquez.jamessmithproject.Activitys.CreateActivity
+ * @see com.example.rodrigovazquez.jamessmithproject.CameraFactory.PhotoIntentActivity
  */
 
 package com.example.rodrigovazquez.jamessmithproject.WebService;
@@ -13,9 +15,9 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.rodrigovazquez.jamessmithproject.Adapter.ListHouseAdapter;
 import com.example.rodrigovazquez.jamessmithproject.Enums.StatusEnum;
@@ -29,9 +31,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.jar.Manifest;
 
 //Servicio general para HomeController
 public class HomeService {
@@ -142,7 +142,6 @@ public class HomeService {
                 if (statusCode == 200) {
 
                     try {
-
                         HomeModel homeModel = new HomeModel(response.getInt("HomeId"),
                                               response.getString("HomeDescription"), response.getString("Address"),
                                               response.getDouble("Price"), response.getBoolean("Active"));
@@ -172,7 +171,6 @@ public class HomeService {
 
                             houseState.setText(StatusEnum.Vendida.toString());
                         }
-
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -271,8 +269,14 @@ public class HomeService {
                 }
 
             });
-
         }
+    }
+
+
+    public void uploadBitMap(final Bitmap bitmap){
+
+
 
     }
+
 }

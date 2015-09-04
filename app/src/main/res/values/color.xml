@@ -7,6 +7,7 @@
     <color name="fieldsDetail">#C9C9C9</color>
     <color name="baseDetail">#EFEFF4</color>
     <color name="titleBaseDetail">#707076</color>
+    <color name="textButtonColor">#B5B5B5</color>
     <color name="kescTitleColor">#4099D1</color>
     <color name="kescColor">#7AA672</color>
     <color name="kescTextColor">#428BCA</color>

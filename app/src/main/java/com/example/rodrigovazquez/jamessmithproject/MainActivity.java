@@ -1,6 +1,4 @@
 /**
- * Actividad principal.
- *
  * @author Rodrigo Vazquez.
  * @version 1.0.
  * @see com.example.rodrigovazquez.jamessmithproject.WebService.HomeService
@@ -27,6 +25,7 @@ import android.widget.Toast;
 import com.example.rodrigovazquez.jamessmithproject.Activitys.CreateActivity;
 import com.example.rodrigovazquez.jamessmithproject.Adapter.ListHouseAdapter;
 import com.example.rodrigovazquez.jamessmithproject.Activitys.DetailHouseActivity;
+import com.example.rodrigovazquez.jamessmithproject.CameraFactory.PhotoIntentActivity;
 import com.example.rodrigovazquez.jamessmithproject.Helpers.Connection;
 import com.example.rodrigovazquez.jamessmithproject.Models.HomeModel;
 import com.example.rodrigovazquez.jamessmithproject.WebService.HomeService;
@@ -107,10 +106,9 @@ public class MainActivity extends AppCompatActivity {
                     HomeModel.deleteAll(HomeModel.class);
                     homeService.getAllHouses(houseList, houses);
                     swipeRefreshLayout.setRefreshing(false);
-                }
-                {
+                } else {
                     Toast toast = Toast.makeText(MainActivity.this, "Not internet connection", Toast.LENGTH_SHORT);
-                    toast.setGravity(Gravity.CENTER_VERTICAL,0,0);
+                    toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
                     toast.show();
                     swipeRefreshLayout.setRefreshing(false);
                 }
@@ -145,6 +143,11 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.actionNewItem) {
 
             Intent intent = new Intent(MainActivity.this, CreateActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        if (id == R.id.actionCamera) {
+            Intent intent = new Intent(MainActivity.this, PhotoIntentActivity.class);
             startActivity(intent);
             return true;
         }
