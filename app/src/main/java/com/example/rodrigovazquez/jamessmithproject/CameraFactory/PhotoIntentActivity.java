@@ -44,6 +44,7 @@ import android.widget.VideoView;
 import com.example.rodrigovazquez.jamessmithproject.Activitys.CreateActivity;
 import com.example.rodrigovazquez.jamessmithproject.Helpers.FontHelper;
 import com.example.rodrigovazquez.jamessmithproject.R;
+import com.example.rodrigovazquez.jamessmithproject.WebService.HomeService;
 
 
 public class PhotoIntentActivity extends AppCompatActivity {
@@ -65,9 +66,16 @@ public class PhotoIntentActivity extends AppCompatActivity {
     private static final String JPEG_FILE_SUFFIX = ".jpg";
 
     private AlbumStorageDirFactory mAlbumStorageDirFactory = null;
-
+    private HomeService service;
     Typeface typeface;
 
+
+    /**
+     * Iniciamos  el servcio.
+     */
+    public PhotoIntentActivity(){
+        service = new HomeService(PhotoIntentActivity.this);
+    }
 
 
     /**
@@ -388,7 +396,7 @@ public class PhotoIntentActivity extends AppCompatActivity {
         if (id == R.id.action_camera_save) {
             Bitmap bitmap = decodeImage();
             if(bitmap != null){
-
+                service.uploadBitMap(bitmap);
             }
         }
         return super.onOptionsItemSelected(item);

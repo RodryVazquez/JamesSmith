@@ -1,5 +1,6 @@
 /**
  * Servicio HTTP para las casas y fotografias.
+ *
  * @author Rodrigo Vazquez.
  * @version 1.0.
  * @see com.example.rodrigovazquez.jamessmithproject.MainActivity
@@ -23,6 +24,7 @@ import com.example.rodrigovazquez.jamessmithproject.Adapter.ListHouseAdapter;
 import com.example.rodrigovazquez.jamessmithproject.Enums.StatusEnum;
 import com.example.rodrigovazquez.jamessmithproject.MainActivity;
 import com.example.rodrigovazquez.jamessmithproject.Models.HomeModel;
+import com.loopj.android.http.Base64;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
@@ -31,6 +33,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.util.List;
 
 //Servicio general para HomeController
@@ -42,6 +46,7 @@ public class HomeService {
 
     /**
      * Inicializa el contexto.
+     *
      * @param context
      */
     public HomeService(Context context) {
@@ -51,11 +56,12 @@ public class HomeService {
 
     /**
      * Consulta todas las casas disponibles.
-     * @param listView listview de la vista principal.
+     *
+     * @param listView      listview de la vista principal.
      * @param homeModelList lista generica de tipo homeModel.
      * @return colecion de casas disponibles.
      */
-    public void getAllHouses(final ListView listView,final List<HomeModel> homeModelList) {
+    public void getAllHouses(final ListView listView, final List<HomeModel> homeModelList) {
 
         ApiService.get(relativeUrl, null, new JsonHttpResponseHandler() {
 
@@ -115,8 +121,9 @@ public class HomeService {
 
     /**
      * Consulta un casa en especifico.
+     *
      * @param objects objetos genericos.
-     * @param homeId id de la casa seleccionada.
+     * @param homeId  id de la casa seleccionada.
      */
     public void getHomeById(final Object[] objects, final int homeId) {
 
@@ -143,8 +150,8 @@ public class HomeService {
 
                     try {
                         HomeModel homeModel = new HomeModel(response.getInt("HomeId"),
-                                              response.getString("HomeDescription"), response.getString("Address"),
-                                              response.getDouble("Price"), response.getBoolean("Active"));
+                                response.getString("HomeDescription"), response.getString("Address"),
+                                response.getDouble("Price"), response.getBoolean("Active"));
                         homeModel.save();
 
                         //Id de la casa
@@ -197,17 +204,16 @@ public class HomeService {
 
 
     /**
-     *
      * @param model objeto tipo HomeModel.
      */
     public void createNewHouse(final HomeModel model) {
-        if(model != null){
+        if (model != null) {
 
             RequestParams requestParams = new RequestParams();
             requestParams.put("HomeDescription", model.getDescription());
-            requestParams.put("Address",model.getAddress());
-            requestParams.put("Price",model.getPrice());
-            requestParams.put("Active",model.getActive());
+            requestParams.put("Address", model.getAddress());
+            requestParams.put("Price", model.getPrice());
+            requestParams.put("Active", model.getActive());
 
             ApiService.post(relativeUrl, requestParams, new JsonHttpResponseHandler() {
 
@@ -272,11 +278,84 @@ public class HomeService {
         }
     }
 
+    /**
+     * @param bitmap
+     */
+    public void uploadBitMap(final Bitmap bitmap) {
 
-    public void uploadBitMap(final Bitmap bitmap){
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        byte[] bytes = stream.toByteArray();
 
+        String imageString = Base64.encodeToString(bytes, Base64.DEFAULT);
+        RequestParams requestParams = new RequestParams();
+        requestParams.add("ImageFile", imageString);
 
+        ApiService.post(relativeUrl, requestParams, new JsonHttpResponseHandler() {
 
+            ProgressDialog dialog;
+
+            @Override
+            public void onStart() {
+                super.onStart();
+                dialog = new ProgressDialog(context);
+                dialog.setMessage("Upload image...");
+                dialog.setCancelable(false);
+                dialog.show();
+            }
+
+            /**
+             *
+             * @param statusCode
+             * @param headers
+             * @param response
+             */
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                super.onSuccess(statusCode, headers, response);
+                if (statusCode == 200 || statusCode == 204) {
+
+                    new AlertDialog.Builder(context)
+                            .setMessage("Image successfully added.")
+                            .setTitle("House Portal")
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                    //Regresamos al listado principal
+                                    Intent intent = new Intent(context, MainActivity.class);
+                                    context.startActivity(intent);
+                                    dialog.cancel();
+                                }
+                            })
+                            .show();
+                }
+            }
+
+            /**
+             *
+             * @param statusCode
+             * @param headers
+             * @param throwable
+             * @param errorResponse
+             */
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                super.onFailure(statusCode, headers, throwable, errorResponse);
+            }
+
+            /**
+             *
+             */
+            @Override
+            public void onFinish() {
+                super.onFinish();
+                if (dialog != null && dialog.isShowing()) {
+
+                    dialog.dismiss();
+                    dialog = null;
+                }
+            }
+        });
     }
-
 }
