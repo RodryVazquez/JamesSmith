@@ -1,0 +1,19 @@
+<resources>
+    <color name="actionBarColor">#19273B</color>
+    <color name="textErrorColor">#CCCCCC</color>
+    <color name="communColor">#fafafa</color>
+    <color name="editTextColorSelected">#0197D6</color>
+    <color name="footerColor">#AE2834</color>
+    <color name="fieldsDetail">#C9C9C9</color>
+    <color name="baseDetail">#EFEFF4</color>
+    <color name="titleBaseDetail">#707076</color>
+    <color name="textButtonColor">#B5B5B5</color>
+    <color name="kescTitleColor">#4099D1</color>
+    <color name="kescColor">#7AA672</color>
+    <color name="kescTextColor">#428BCA</color>
+    <color name="primary">#673AB7</color>
+    <color name="primaryBody">#EDE7F6</color>
+    <color name="primaryFooter">#311B92</color>
+    <color name="primarySubtitle">#D1C4E9</color>
+    <color name="primaryContent">#4527A0</color>
+</resources>

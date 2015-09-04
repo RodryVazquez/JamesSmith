@@ -1,0 +1,194 @@
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/detailEvaluationLayoutHistoric">
+
+    <!--Header-->
+    <RelativeLayout
+        android:id="@+id/headerSection"
+        android:layout_width="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_height="20dp"
+        android:background="@color/primarySubtitle">
+
+    </RelativeLayout>
+    <!--Footer-->
+    <RelativeLayout
+        android:id="@+id/footerSection"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:gravity="center"
+        android:background="@color/primaryFooter" />
+
+    <ScrollView
+        android:id="@+id/detailScrollGeneralLayoutHistoric"
+        android:layout_width="match_parent"
+        android:background="@color/primaryBody"
+        android:layout_above="@id/footerSection"
+        android:layout_below="@id/headerSection"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/relativeId"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!--Nombre-->
+            <TextView
+                android:id="@+id/txtCreateDescription"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="8dp"
+                android:textSize="20dp"
+                android:text="House Description"
+                android:textColor="@color/primaryContent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <EditText
+                android:id="@+id/edtDescription"
+                android:layout_below="@+id/txtCreateDescription"
+                android:layout_marginTop="2dp"
+                android:layout_marginLeft="40dp"
+                android:inputType="text"
+                android:layout_marginRight="15dp"
+                android:textSize="15dp"
+                android:singleLine="true"
+                android:backgroundTint="@color/primary"
+                android:hint="Description of house"
+                android:layout_width="match_parent"
+                android:layout_height="39dp"/>
+
+            <ImageView
+                android:id="@+id/iconCreate"
+                android:layout_below="@+id/txtCreateDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="centerInside"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="3dp"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/ic_action_labels"/>
+
+
+            <!--Telefono-->
+            <TextView
+                android:id="@+id/txtCreateAddress"
+                android:layout_below="@+id/iconCreate"
+                android:layout_marginTop="7dp"
+                android:layout_marginLeft="8dp"
+                android:textColor="@color/primaryContent"
+                android:textSize="20dp"
+                android:text="Address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <EditText
+                android:id="@+id/edtAddress"
+                android:layout_below="@+id/txtCreateAddress"
+                android:layout_marginTop="3dp"
+                android:layout_marginLeft="40dp"
+                android:inputType="text"
+                android:layout_marginRight="15dp"
+                android:textSize="15dp"
+                android:backgroundTint="@color/primary"
+                android:hint="Address of house"
+                android:singleLine="true"
+                android:layout_width="match_parent"
+                android:layout_height="39dp"/>
+
+            <ImageView
+                android:id="@+id/iconCreate2"
+                android:layout_below="@+id/txtCreateAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="centerInside"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="3dp"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/ic_action_directions"/>
+
+            <!--Direccion-->
+            <TextView
+                android:id="@+id/txtCreatePrice"
+                android:layout_below="@+id/iconCreate2"
+                android:layout_marginTop="7dp"
+                android:layout_marginLeft="8dp"
+                android:textColor="@color/primaryContent"
+                android:textSize="20dp"
+                android:text="Price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <EditText
+                android:id="@+id/edtPrice"
+                android:layout_below="@+id/txtCreatePrice"
+                android:layout_marginTop="3dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="15dp"
+                android:inputType="number"
+                android:textSize="15dp"
+                android:backgroundTint="@color/primary"
+                android:hint="Price of house"
+                android:layout_width="match_parent"
+                android:layout_height="39dp"/>
+
+            <ImageView
+                android:id="@+id/iconCreate3"
+                android:layout_below="@+id/txtCreatePrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="centerInside"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="3dp"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/ic_action_important"/>
+
+            <!--Zona-->
+            <TextView
+                android:id="@+id/txtCreateStatus"
+                android:layout_below="@+id/iconCreate3"
+                android:layout_marginTop="7dp"
+                android:layout_marginLeft="8dp"
+                android:textColor="@color/primaryContent"
+                android:textSize="20dp"
+                android:text="Status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_below="@+id/txtCreateStatus"
+                android:layout_marginTop="3dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="15dp"
+                android:textSize="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <ImageView
+                android:id="@+id/iconCreate4"
+                android:layout_below="@+id/txtCreateStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="centerInside"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="3dp"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/ic_action_search"/>
+
+
+
+
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>
