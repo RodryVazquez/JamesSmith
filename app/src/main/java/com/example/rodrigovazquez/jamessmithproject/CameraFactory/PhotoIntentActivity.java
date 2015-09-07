@@ -73,7 +73,7 @@ public class PhotoIntentActivity extends AppCompatActivity {
     /**
      * Iniciamos  el servcio.
      */
-    public PhotoIntentActivity(){
+    public PhotoIntentActivity() {
         service = new HomeService(PhotoIntentActivity.this);
     }
 
@@ -176,10 +176,10 @@ public class PhotoIntentActivity extends AppCompatActivity {
 
 		/* Decode the JPEG file into a Bitmap */
         Bitmap bitmap = BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
-        if(bitmap != null){
-            Toast.makeText(PhotoIntentActivity.this,"Save successful!!",Toast.LENGTH_SHORT).show();
+        if (bitmap != null) {
+            Toast.makeText(PhotoIntentActivity.this, "Save successful!!", Toast.LENGTH_SHORT).show();
         }
-		/* Associate the Bitmap to the ImageView */
+        /* Associate the Bitmap to the ImageView */
         mImageView.setImageBitmap(bitmap);
 
     }
@@ -197,6 +197,7 @@ public class PhotoIntentActivity extends AppCompatActivity {
 
     /**
      * Guarda una imagen en tamaño normal.
+     *
      * @param actionCode entero para diferenciar el manejo de la imagen (Comprimida / No comprimida).
      */
     private void dispatchTakePictureIntent(int actionCode) {
@@ -228,22 +229,24 @@ public class PhotoIntentActivity extends AppCompatActivity {
 
     /**
      * Setea la imagen al ImageView de la vista.
+     *
      * @param intent
      */
     private void handleSmallCameraPhoto(Intent intent) {
         Bundle extras = intent.getExtras();
         mImageBitmap = (Bitmap) extras.get("data");
-        if(saveSmallImage()){
-            Toast.makeText(PhotoIntentActivity.this,"Save successful!!",Toast.LENGTH_SHORT).show();
+        if (saveSmallImage()) {
+            Toast.makeText(PhotoIntentActivity.this, "Save successful!!", Toast.LENGTH_SHORT).show();
         }
         mImageView.setImageBitmap(mImageBitmap);
     }
 
     /**
      * Guardamos la imagen en la ruta segun el build de compilacion.
+     *
      * @return falso o verdadero dependiendo si se guardo o no.
      */
-    public Boolean saveSmallImage(){
+    public Boolean saveSmallImage() {
 
         File file = null;
         FileOutputStream fileOutputStream = null;
@@ -257,7 +260,7 @@ public class PhotoIntentActivity extends AppCompatActivity {
             mCurrentPhotoPath = newFile.getAbsolutePath();
 
             fileOutputStream = new FileOutputStream(newFile);
-            mImageBitmap.compress(Bitmap.CompressFormat.PNG,100, fileOutputStream);
+            mImageBitmap.compress(Bitmap.CompressFormat.PNG, 100, fileOutputStream);
             fileOutputStream.flush();
 
         } catch (IOException e) {
@@ -277,13 +280,37 @@ public class PhotoIntentActivity extends AppCompatActivity {
 
     /**
      * Obtiene la imagen de la ruta absoluta seteada previamente.
+     *
      * @return bitmap consultado.
      */
-    public Bitmap decodeImage(){
+    public Bitmap decodeImage() {
 
         Bitmap bitmap = null;
-        if(!mCurrentPhotoPath.isEmpty()) {
-            bitmap = BitmapFactory.decodeFile(mCurrentPhotoPath);
+        if (!mCurrentPhotoPath.isEmpty()) {
+            // Decode image size
+            BitmapFactory.Options o = new BitmapFactory.Options();
+            o.inJustDecodeBounds = true;
+            BitmapFactory.decodeFile(mCurrentPhotoPath, o);
+
+            // The new size we want to scale to
+            final int REQUIRED_SIZE = 1024;
+
+            // Find the correct scale value. It should be the power of 2.
+            int width_tmp = o.outWidth, height_tmp = o.outHeight;
+            int scale = 1;
+            while (true) {
+                if (width_tmp < REQUIRED_SIZE && height_tmp < REQUIRED_SIZE)
+                    break;
+                width_tmp /= 2;
+                height_tmp /= 2;
+                scale *= 2;
+            }
+
+            // Decode with inSampleSize
+            BitmapFactory.Options o2 = new BitmapFactory.Options();
+            o2.inSampleSize = scale;
+            bitmap = BitmapFactory.decodeFile(mCurrentPhotoPath, o2);
+
         }
         return bitmap;
     }
@@ -324,7 +351,7 @@ public class PhotoIntentActivity extends AppCompatActivity {
         mImageView = (ImageView) findViewById(R.id.profile_image);
 
         mImageBitmap = null;
-        typeface = FontHelper.getTypeFace(typeface,PhotoIntentActivity.this);
+        typeface = FontHelper.getTypeFace(typeface, PhotoIntentActivity.this);
 
         Button picBtn = (Button) findViewById(R.id.btnIntend);
         picBtn.setTypeface(typeface);
@@ -347,6 +374,7 @@ public class PhotoIntentActivity extends AppCompatActivity {
 
     /**
      * Retornamos la imagen previamente de la camara.
+     *
      * @param requestCode
      * @param resultCode
      * @param data
@@ -372,7 +400,6 @@ public class PhotoIntentActivity extends AppCompatActivity {
     }
 
     /**
-     *
      * @param menu
      * @return
      */
@@ -384,7 +411,6 @@ public class PhotoIntentActivity extends AppCompatActivity {
     }
 
     /**
-     *
      * @param item
      * @return
      */
@@ -395,7 +421,7 @@ public class PhotoIntentActivity extends AppCompatActivity {
         //
         if (id == R.id.action_camera_save) {
             Bitmap bitmap = decodeImage();
-            if(bitmap != null){
+            if (bitmap != null) {
                 service.uploadBitMap(bitmap);
             }
         }
